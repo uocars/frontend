@@ -16,4 +16,3 @@ if (navigator.geolocation) {
 } else {
     console.error("Geolocation is not supported by this browser.");
 }
-// Path: frontend/EV_Project/EV%20Project/maps.js

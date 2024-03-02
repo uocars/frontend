@@ -18,6 +18,10 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/directions/json?destination=Montreal&origin=Toronto&key=YAIzaSyCpvE1r_G8-HhITGBxNSxT6rSZ6ywb3Q_U" async defer></script>
     <!-- <script src="https://places.googleapis.com/v1/places/GyuEmsRBfy61i59si0?fields=addressComponents&key=AIzaSyBekCokKaDXG7MtGS4D1rUqKehBwNb1Nt8" async defer></script> -->
+    <script src="maps.js"></script>
+    <script src="directions.js"></script>
+    <script src="api.js"></script>
+    
   </head>
 
 <body>
@@ -39,39 +43,6 @@
         </form>
     </div>
 
-<<<<<<< HEAD
     <div id="map"></div> <!-- Container for the map -->
-=======
-    <div id="map" style="height: 1000px; width: 100%;"></div> <!-- Container for the map -->
->>>>>>> 79175c6dd59e9f461c3db823e69693d194aae32f
-
-    <script>
-      // Initialize the map
-      let map;
-
-async function initMap() {
-  const { Map } = await google.maps.importLibrary("maps");
-
-  map = new Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
-}
-
-initMap();
-
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition((position) => {
-            const userLocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            // Use userLocation to center the map or perform other actions
-          });
-        } else {
-          console.error("Geolocation is not supported by this browser.");
-        }
-  
-    </script>
 </body>
 </html>
