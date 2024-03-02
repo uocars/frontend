@@ -22,6 +22,9 @@
 
 <body>
     <div id="mySidenav" class="sidenav">
+        
+    <h1>uOCars Route Planner for EVs</h1>
+        
         <form id="routePlan" action="/database_name.php"><!-- Change database link -->
             <label for="carSelect">Select a vehicle:</label>
             <select id="carSelect" name="model">
@@ -37,6 +40,11 @@
             <input type="text" id="destination" name="destination" value=""><br><br>
             <button type="button" onclick="submitForm()">Submit</button>
         </form>
+            <br><br>
+
+        <button onclick="window.location.href='login.html';">
+            Login
+        </button>
     </div>
 
 
