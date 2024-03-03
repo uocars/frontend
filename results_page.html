@@ -36,25 +36,27 @@
 <body>
     <div id="mySidenav" class="sidenav">
         <h1><strong>uOCars</strong> Route Planner for EVs</h1>
-        <form method="post" id="routePlan" onsubmit="submitForm(event)">
-            {% csrf_token %}
-            <label for="carSelect">Select a vehicle:</label>
-            <select class="input" id="carSelect" name="model">
-                <option value="f-150_stand">F-150 Lightning Standard Range</option>
-                <option value="f-150_ext">F-150 Lightning Extended Range</option>
-                <option value="mustang_stand">Mustang Mach-E Standard Range</option>
-                <option value="mustang_ext">Mustang Mach-E Extended Range</option>
-            </select>
-            <br><br>
-            <label for="position">My position:</label>
-            <input class="input" type="text" id="position" name="position" placeholder="Enter your position" required><br><br>
-            <label for="destination">My destination:</label>
-            <input class="input" type="text" id="destination" name="destination" placeholder="Enter your destination" required><br><br>
-            <input type="submit" class="submit" value="Plan Route">
-        </form>
-        <button onclick="window.location.href='login.html';" class="login-button">
-            <span>Login</span>
-        </button>
+        <b>5 hours (406 km)</b><br>
+        4 hours 37 minutes drive<br>
+        8 minutes - One charge
+        <br><br>
+        <div id="myContainers" class="containResults">
+            <b>Ottawa, ON, Canada</b><br>
+            90% battery
+        </div>
+        <br>
+        <div id="myContainers" class="containResults">
+            <b>Shell Recharge Charging Station</b><br>
+            From 21% to 28% battery<br>
+            8 minutes
+        </div>
+        <br>
+        <div id="myContainers" class="containResults">
+            <b>Toronto, ON, Canada</b><br>
+            11% battery
+        </div>
+        <br><br>
+        <button class="button-res1"><b>DRIVE</b></button>
     </div>
 
     <div id="map"></div> <!-- Container for the map -->
