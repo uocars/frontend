@@ -9,11 +9,18 @@ const directionsService = new google.maps.DirectionsService();
 const directionsRenderer = new google.maps.DirectionsRenderer();
 directionsRenderer.setMap(map);
 
-const request = {
-    origin: "Toronto",
-    destination: "Montreal",
+function input(){
+    const position = document.getElementById("position")
+    const positionInput = position.value;
+    const destination = document.getElementById("destination")
+    const destinationInput = destination.value;
+    const request = {
+    origin: positionInput,
+    destination: destinationInput,
     travelMode: google.maps.TravelMode.DRIVING
 };
+}
+
 
 directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {

@@ -19,7 +19,9 @@
     <script src="https://maps.googleapis.com/maps/api/directions/json?destination=Montreal&origin=Toronto&key=YAIzaSyCpvE1r_G8-HhITGBxNSxT6rSZ6ywb3Q_U" async defer></script>
     <!-- <script src="https://places.googleapis.com/v1/places/GyuEmsRBfy61i59si0?fields=addressComponents&key=AIzaSyBekCokKaDXG7MtGS4D1rUqKehBwNb1Nt8" async defer></script> -->
     <script src="maps.js"></script>
-    <script src="directions.js"></script>
+    <script src="directions.js">
+      
+    </script>
     <script src="api.js"></script>
     
   </head>
@@ -31,7 +33,7 @@
         
         <form id="routePlan" action="/database_name.php"><!-- Change database link -->
             <label for="carSelect">Select a vehicle:</label>
-            <select id="carSelect" name="model">
+            <select class="input" id="carSelect" name="model">
                 <option value="f-150_stand">F-150 Lightning Standard Range</option>
                 <option value="f-150_ext">F-150 Lightning Extended Range</option>
                 <option value="mustang_stand">Mustang Mach-E Standard Range</option>
@@ -39,16 +41,21 @@
             </select>
             <br><br>
             <label for="departure">My position:</label>
-            <input type="text" id="position" name="position" value=""><br><br>
+            <input class="input" type="text" id="position" name="position" value=""><br><br>
             <label for="departure">My destination:</label>
-            <input type="text" id="destination" name="destination" value=""><br><br>
-            <button type="button" onclick="submitForm()">Submit</button>
+            <input class="input" type="text" id="destination" name="destination" value=""><br><br>
+            <button  class="input submit" type="button" onclick="input()">Submit</button>
+
         </form>
             <br><br>
 
-        <button onclick="window.location.href='login.html';">
+        
+          <button class="input" onclick="window.location.href='login.html';">
             Login
         </button>
+        
+
+        
     </div>
 
     <div id="map"></div> <!-- Container for the map -->
