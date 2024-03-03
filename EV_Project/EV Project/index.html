@@ -22,7 +22,9 @@
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaq7pDiqdSt7F-kAR347HADah7gDUWEyY&callback=initMap" async defer></script> -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaq7pDiqdSt7F-kAR347HADah7gDUWEyY"></script>
     <script src="maps.js"></script>
-    <script src="directions.js"></script>
+    <script src="directions.js">
+      
+    </script>
     <script src="api.js"></script>
     <script src="maps.js"></script>
     <script src="form.js"></script>
@@ -37,7 +39,7 @@
         
         <form id="routePlan" onsubmit="submitForm(event)"><!-- Change database link -->
             <label for="carSelect">Select a vehicle:</label>
-            <select id="carSelect" name="model">
+            <select class="input" id="carSelect" name="model">
                 <option value="f-150_stand">F-150 Lightning Standard Range</option>
                 <option value="f-150_ext">F-150 Lightning Extended Range</option>
                 <option value="mustang_stand">Mustang Mach-E Standard Range</option>
@@ -45,7 +47,7 @@
             </select>
             <br><br>
             <label for="departure">My position:</label>
-            <input type="text" id="position" name="position" value=""><br><br>
+            <input class="input" type="text" id="position" name="position" value=""><br><br>
             <label for="departure">My destination:</label>
             <input type="text" id="destination" name="destination" value=""><br><br>
             <!-- <button type="button" onclick="submitForm()">Submit</button> -->
