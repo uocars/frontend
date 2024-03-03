@@ -14,13 +14,19 @@
         // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
         // Add other bootstrap parameters as needed, using camel case.
       });
-
     </script>
-    <script src="https://maps.googleapis.com/maps/api/directions/json?destination=Montreal&origin=Toronto&key=YAIzaSyCpvE1r_G8-HhITGBxNSxT6rSZ6ywb3Q_U" async defer></script>
-    <!-- <script src="https://places.googleapis.com/v1/places/GyuEmsRBfy61i59si0?fields=addressComponents&key=AIzaSyBekCokKaDXG7MtGS4D1rUqKehBwNb1Nt8" async defer></script> -->
+    <!-- <script type="application/json" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="https://maps.googleapis.com/maps/api/directions/json?destination=Montreal&origin=Toronto&key=YAIzaSyCpvE1r_G8-HhITGBxNSxT6rSZ6ywb3Q_U" async defer></script>
+    <script src="https://places.googleapis.com/v1/places/GyuEmsRBfy61i59si0?fields=addressComponents&key=AIzaSyBekCokKaDXG7MtGS4D1rUqKehBwNb1Nt8" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/directions/json?destination&origin&key=YAIzaSyCpvE1r_G8-HhITGBxNSxT6rSZ6ywb3Q_U"></script> -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaq7pDiqdSt7F-kAR347HADah7gDUWEyY&callback=initMap" async defer></script> -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaq7pDiqdSt7F-kAR347HADah7gDUWEyY"></script>
     <script src="maps.js"></script>
     <script src="directions.js"></script>
     <script src="api.js"></script>
+    <script src="maps.js"></script>
+    <script src="form.js"></script>
+    <script src="login.js"></script>
     
   </head>
 
@@ -29,7 +35,7 @@
         
     <h1>uOCars Route Planner for EVs</h1>
         
-        <form id="routePlan" action="/database_name.php"><!-- Change database link -->
+        <form id="routePlan" onsubmit="submitForm(event)"><!-- Change database link -->
             <label for="carSelect">Select a vehicle:</label>
             <select id="carSelect" name="model">
                 <option value="f-150_stand">F-150 Lightning Standard Range</option>
@@ -42,13 +48,17 @@
             <input type="text" id="position" name="position" value=""><br><br>
             <label for="departure">My destination:</label>
             <input type="text" id="destination" name="destination" value=""><br><br>
-            <button type="button" onclick="submitForm()">Submit</button>
+            <!-- <button type="button" onclick="submitForm()">Submit</button> -->
+            <input type="submit" value="Submit">
         </form>
             <br><br>
 
         <button onclick="window.location.href='login.html';">
-            Login
+            <span>Login</span>
         </button>
+        <!-- <form action="login.html" method="post" target="_blank">
+            <button type="login">Login</button>
+        </form> -->
     </div>
 
     <div id="map"></div> <!-- Container for the map -->
