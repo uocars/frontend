@@ -21,23 +21,23 @@
     <script src="https://maps.googleapis.com/maps/api/directions/json?destination&origin&key=YAIzaSyCpvE1r_G8-HhITGBxNSxT6rSZ6ywb3Q_U"></script> -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaq7pDiqdSt7F-kAR347HADah7gDUWEyY&callback=initMap" async defer></script> -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaq7pDiqdSt7F-kAR347HADah7gDUWEyY"></script>
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaq7pDiqdSt7F-kAR347HADah7gDUWEyY&libraries=places"></script> -->
+  <script async defer src="https://maps.googleapis.com/maps/api/place/textsearch/json?query=electric_vehicle_charging_station&key=AIzaSyBekCokKaDXG7MtGS4D1rUqKehBwNb1Nt8"></script>
     <script src="maps.js"></script>
-    <script src="directions.js">
-      
-    </script>
+    <script src="directions.js"></script>
     <script src="api.js"></script>
-    <script src="maps.js"></script>
     <script src="form.js"></script>
     <script src="login.js"></script>
-    
+    <script src="chargingStations.js"></script>
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   </head>
 
 <body>
     <div id="mySidenav" class="sidenav">
-        
-    <h1>uOCars Route Planner for EVs</h1>
-        
-        <form id="routePlan" onsubmit="submitForm(event)"><!-- Change database link -->
+        <h1><strong>uOCars</strong> Route Planner for EVs</h1>
+        <form method="post" id="routePlan" onsubmit="submitForm(event)">
+            {% csrf_token %}
             <label for="carSelect">Select a vehicle:</label>
             <select class="input" id="carSelect" name="model">
                 <option value="f-150_stand">F-150 Lightning Standard Range</option>
@@ -46,23 +46,20 @@
                 <option value="mustang_ext">Mustang Mach-E Extended Range</option>
             </select>
             <br><br>
-            <label for="departure">My position:</label>
-            <input class="input" type="text" id="position" name="position" value=""><br><br>
-            <label for="departure">My destination:</label>
-            <input type="text" id="destination" name="destination" value=""><br><br>
-            <!-- <button type="button" onclick="submitForm()">Submit</button> -->
-            <input type="submit" value="Submit">
+            <label for="position">My position:</label>
+            <input class="input" type="text" id="position" name="position" placeholder="Enter your position" required><br><br>
+            <label for="destination">My destination:</label>
+            <input class="input" type="text" id="destination" name="destination" placeholder="Enter your destination" required><br><br>
+            <input type="submit" class="submit" value="Plan Route">
         </form>
-            <br><br>
-
-        <button onclick="window.location.href='login.html';">
+        <button onclick="window.location.href='login.html';" class="login-button">
             <span>Login</span>
         </button>
-        <!-- <form action="login.html" method="post" target="_blank">
-            <button type="login">Login</button>
-        </form> -->
     </div>
 
     <div id="map"></div> <!-- Container for the map -->
+    <div id="sidebar"></div>
+    <div id="battery"></div>
+
 </body>
 </html>

@@ -1,47 +1,109 @@
-       /* The side navigation menu */
-    .sidenav {
-        height: 100%;
-        width: 250px;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        background-color: #45a643;
-        overflow-x: hidden;
-        padding-top: 20px;
-        padding-left: 10px;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+/* Global Styles */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
 
-    .input {
-        border-radius:40px;
-        margin-top: 5px;
-        padding: 5px;
-    }
+/* Side Navigation Menu */
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #081534;
+    overflow-x: hidden;
+    padding: 20px 10px;
+    color: #f1f1f1;
+}
 
-   .submit{
-     padding: 20px;
-     width: 230px;
-   }
-    
-    .sidenav a {
-        padding: 6px 6px 6px 32px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #f1f1f1;
-        display: block;
+.sidenav h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.input {
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.submit {
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: #C6C6C6;
+    color: 47A8E5;
+    cursor: pointer;
+    margin-top: 10px;
+
+}
+
+.submit:hover {
+    background-color: #2A6BAC;
+}
+strong {
+    color: #C6C6C6;
+    animation: illuminating 3s infinite;
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 2em;
+}
+
+@keyframes illuminating {
+    0% {
+        color: #C6C6C6;
     }
-    
-    .sidenav a:hover {
-        color: #f1f1f1;
+    50% {
+        color: #2A6BAC;
     }
-    
-    .main {
-        margin-left: 250px; /* Same as the width of the sidenav */
+    100% {
+        color: #C6C6C6;
     }
-    
-    #map {
-        height: 1000px;
-        width: calc(100% - 250px); /* Adjust width to account for side navigation */
-        margin-left: 250px; /* Ensure map is positioned correctly relative to sidenav */
+}
+.login-button {
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: #C6C6C6;
+    color: 47A8E5;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    background-color: #2A6BAC;
+}
+
+/* Main Content */
+#map {
+    margin-left: 250px; /* Same as the width of the sidenav */
+    height: calc(100vh - 40px); /* Adjust height to fit screen */
+    width: calc(100% - 250px); /* Adjust width to account for side navigation */
+}
+
+/* CSS for the ongoing request spinner*/
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
     }
+  }
+  

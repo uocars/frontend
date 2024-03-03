@@ -1,6 +1,6 @@
 // chargingstations method in the Main class is responsible for determining the # of charging 
-//stations a user should visit based on their ev model, current position, and destination. 
-//It calculates the number of stations needed to reach the destination without running out of battery.
+// stations a user should visit based on their ev model, current position, and destination. 
+// It calculates the number of stations needed to reach the destination without running out of battery.
 class Main {
     chargingstations(model, distance) {
         let stationsAmount = 0;
@@ -18,31 +18,27 @@ class Main {
         return stationsAmount;
     }
 }
+
 //To calculate the distance between two points on Earth given their latitude and longitude coordinates
-//you can use the Haversine formula.
+//the Haversine formula.
 function calculateDistance(position, destination) {
-    const R = 6371; // Radius of the Earth in kilometers
-
-    const lat1 = position.lat; // Latitude of position in degrees
-    const lon1 = position.lng; // Longitude of position in degrees
-
-    const lat2 = destination.lat; // Latitude of destination in degrees
-    const lon2 = destination.lng; // Longitude of destination in degrees
-
-    const dLat = (lat2 - lat1) * (Math.PI / 180); // Difference in latitude in radians
-    const dLon = (lon2 - lon1) * (Math.PI / 180); // Difference in longitude in radians
-
-    const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const R = 6371e3; // metres Earth radius
+    const φ1 = position.lat * Math.PI / 180; // φ, λ in radians (laritude, longitude in radians)
+    const φ2 = destination.lat * Math.PI / 180;
+    const Δφ = (destination.lat - position.lat) * Math.PI / 180;
+    const Δλ = (destination.lng - position.lng) * Math.PI / 180;
+    
+    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                Math.cos(φ1) * Math.cos(φ2) *
+                Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    const distance = R * c; // Distance in kilometers
-
+    const distance = R * c; // in metres, the distance
     return distance;
 }
+
+// Modify your existing fetch request to include the CSRF token in the headers
 async function submitForm(event) {
     event.preventDefault();
     const form = document.getElementById("routePlan");
@@ -51,24 +47,60 @@ async function submitForm(event) {
     const position = data.get("position");
     const destination = data.get("destination");
     console.log(model, position, destination);
-    // Call the API
-    await calculateRoute(model, position, destination);
-}
 
-async function getRoute(model, position, destination) {
+    // Retrieve CSRF token from cookie
+    const csrfToken = getCSRFToken();
+
     try {
-        const response = await fetch('/calculateRoute', {
+        const response = await fetch('http://127.0.0.1:8000/calculate-route', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken, // Include CSRF token in the headers
             },
-            body: JSON.stringify({ model, position, destination })
+            body: JSON.stringify({ model, position, destination }), // Send data as JSON
         });
-        const data = await response.json();
-        // Handle the response data as needed (e.g., display the route on the map)
-        console.log(data);
+
+        if (response.ok) {
+            const data = await response.json();
+            // Process the route data returned from the server
+            console.log(routeData);
+        } else {
+            console.error('Error fetching route data:', response.statusText);
+        }
     } catch (error) {
-        console.error('Error calculating route:', error);
-        // Handle errors appropriately
+        // Handle any errors that occur during the fetch request
+        console.error('Error fetching route data:', error);
     }
 }
+// Function to retrieve CSRF token from cookie
+function getCSRFToken() {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; csrftoken=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+
+
+// Add an event listener to the form submit event
+window.addEventListener("DOMContentLoaded", (event) => {
+    const form = document.getElementById("routePlan");
+    if (form) {
+        form.addEventListener("submit", submitForm);
+    }
+});
